@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<div class='header'>
+    <h1>{{request.user}}</h1>
+    <h4>you have {{count}} tasks</h4>
+    <h5><a href="{% url 'logout' %}" id="log">logout</a></h5>
+    {% else %}
+    <h5><a href="{% url 'login' %}" id="log">login</a></h5>
+    {% endif %}
+    <hr>
+</div>
+<h3>My Tasks</h3>
+<form method="GET" action="{% url 'tasks' %}">
+    <input type="text" name="q" placeholder="search"/>
+    <button type="submit" class="btn btn-primary">search</button>
+</form>
+<h4 class="'text-primary"><a href="{% url 'form' %}">Add a task +</a></h4>
+<table class="table table-sm">
+    <tr>
+        <th>tasks</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for task in tasks %}
+    {% if request.user == task.user %}
+    <tr>
+        <td><a href="{% url 'task' task.id %}" class="text-dark"><h3>{{task.title}}</h3></a></td>
+        <td><a href="{% url 'task-update' task.id %}"><button class="btn btn-primary">Edit</button></a></td>
+        <td><a href="{% url 'task-delete' task.id %}" ><button  class="btn btn-danger">Done</button></a></td>
+    </tr>
+    
+    {% endif %}
+    {% endfor %}
+    
+ </table>
+
+{% endblock %}

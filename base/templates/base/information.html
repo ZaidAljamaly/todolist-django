@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="bg-primary">
+    <h1>Task:{{task.title}}</h1>
+</div>
+<div class="infoBody">
+    <h1 class="'text-center">about this task:</h1>
+    <h4 class="info text-center">{{task.description}}</h4>
+
+</div>
+<div>
+    <a href="{% url 'tasks' %}">back to tasks</a>
+</div>
+
+
+{% endblock %}

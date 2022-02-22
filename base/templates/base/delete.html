@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<a href="{% url 'tasks' %}">cancel</a>
+
+<form method="post" action="">
+    {% csrf_token %}
+    <h5>are you sure you finished {{task}}</h5>
+    <input type="submit" value="done" class="btn btn-danger"/>
+</form>
+
+{% endblock %}
