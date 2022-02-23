@@ -1,1 +1,1 @@
-web:gununicron taskslist.wsgi --log-file -
+web:gunicron taskslist.wsgi --log-file -
